@@ -23,13 +23,31 @@ jobs:
 
           for folder in $FOLDERS; do
             echo "Validando arquivos na pasta $folder..."
+            
+            if ls "$folder"/*.h >/dev/null 2>&1; then
+              echo "Compilando todos os arquivos .c na pasta $folder..."
 
-            gcc "$folder"/*.c -o "$folder/a.out" -lm
+              gcc "$folder"/*.c -o "$folder/a.out" -lm
               
-            if [ $? -eq 0 ]; then
-              echo "✅ Pasta $folder compilada com sucesso!"
+              if [ $? -eq 0 ]; then
+                echo "✅ Pasta $folder compilada com sucesso!"
+              else
+                echo "❌ Erro ao compilar a pasta $folder"
+                exit 1
+              fi
             else
-              echo "❌ Erro ao compilar a pasta $folder"
-              exit 1
+              FILES=$(find "$folder" -name "*.c" -print0)
+
+              for file in $FILES; do
+                echo "Compilando $file..."
+                gcc "$file" -o "${file%.c}.out" -lm
+                
+                if [ $? -eq 0 ]; then
+                  echo "✅ Arquivo $file compilado com sucesso!"
+                else
+                  echo "❌ Erro ao compilar o arquivo $file"
+                  exit 1
+                fi
+              done
             fi
           done
