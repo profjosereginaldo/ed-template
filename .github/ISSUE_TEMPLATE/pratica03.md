@@ -55,9 +55,9 @@ git commit -m "feat: conclui pratica03. Fecha #ID"
 git push origin feature/pratica03
 ```
 4. No GitHub, clique no botão **Compare & pull request**.
-5. **Importante**: Certifique-se de que o **base repository** é o repositório do professor e a **base branch** é a `develop`.
+5. **Importante**: Certifique-se de que o **base repository** é o seu repositório e a **base branch** é a `develop`.
 6. Na descrição, escreva: `Nesta prática, implementei tipos de dados abstratos em C. Fecha #ID`.
-7. Clique em **Create pull request** e aguarde a correção do professor.
+7. Clique em **Create pull request** e envie o link do PR na plataforma de ensino para o professor.
 
 ## 📂 Estrutura Final
 Seu repositório deve ficar assim:
