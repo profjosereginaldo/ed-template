@@ -36,11 +36,12 @@ jobs:
                 exit 1
               fi
             else
-              FILES=$(find "$folder" -name "*.c" -print0)
+              FILES=$(find "$folder" -name "*.c")
 
               for file in $FILES; do
                 echo "Compilando $file..."
-                gcc "$file" -o "${file%.c}.out" -lm
+                
+                gcc "$file" -o "$folder/a.out" -lm
                 
                 if [ $? -eq 0 ]; then
                   echo "✅ Arquivo $file compilado com sucesso!"
